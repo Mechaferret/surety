@@ -2,8 +2,8 @@ PATH
   remote: .
   specs:
     surety (0.1.0)
-      activerecord (~> 3.0.0)
-      activesupport (~> 3.0.0)
+      activerecord (>= 3.0)
+      activesupport (>= 3.0)
       resque (>= 1.19.0)
       state_machine (>= 1.0.0)
       yajl-ruby (~> 0.8.2)

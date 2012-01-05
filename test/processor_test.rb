@@ -7,7 +7,7 @@ class ProcessorTest < Test::Unit::TestCase
     Resque.redis.namespace = nil
     Resque.redis.flushall
     Resque.redis.namespace = 'test_surety'
-    Surety::Configuration.database_prefix = 'surety'
+    Surety::Configuration.database_prefix = 'surety_'
     Surety::Configuration.message_processing_delegate = TestDelegate
   end
   

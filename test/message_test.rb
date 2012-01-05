@@ -3,7 +3,7 @@ require File.expand_path('test_helper.rb', File.dirname(__FILE__))
 class MessageTest < Test::Unit::TestCase
 
   def setup
-    Surety::Configuration.database_prefix = 'surety'
+    Surety::Configuration.database_prefix = 'surety_'
     @message = Surety::Message.generate_message('Testing message')
   end
   
