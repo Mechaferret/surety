@@ -1,0 +1,13 @@
+test:
+  adapter: mysql2
+  host: localhost
+  username: root
+  password: root
+  database: surety_test
+
+surety_test:
+  adapter: mysql2
+  host: localhost
+  username: root
+  password: root
+  database: surety_test

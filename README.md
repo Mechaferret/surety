@@ -7,7 +7,15 @@ A lightweight guaranteed-delivery messaging system.
 Usage / Examples
 ================
 
-Coming soon....
+A simple class that can send a message for guaranteed delivery:
+
+    class TestGenerator
+      include Surety::Generator
+    
+      def some_method
+        self.send_message(message_content)
+      end
+    end
 
 
 Install
