@@ -14,8 +14,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency('yajl-ruby', '~> 0.8.2')
   s.add_dependency('resque', '>= 1.19.0')
-  s.add_dependency('activesupport', '~> 3.0.0')
-  s.add_dependency('activerecord', '~> 3.0.0')
+  s.add_dependency('activesupport', '>= 3.0')
+  s.add_dependency('activerecord', '>= 3.0')
   s.add_dependency('state_machine', '>=1.0.0')
 
   s.add_development_dependency('mysql2', '0.2.7')
