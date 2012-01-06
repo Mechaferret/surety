@@ -5,9 +5,9 @@ module Surety
     
     def self.perform
       puts "[Surety::Processor]: Handling surety message"
-      message = Surety::Message.get_next_for_processing
-      puts "[Surety::Processor]: Found message #{message.inspect}"
       begin
+        message = Surety::Message.get_next_for_processing
+        puts "[Surety::Processor]: Found message #{message.inspect}"
         message.process
       rescue Exception => ex
         puts "[Surety::Processor]: error #{ex.to_s}"

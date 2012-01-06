@@ -1,5 +1,6 @@
 module Surety
   class Message < ActiveRecord::Base
+    require 'state_machine'
     establish_connection Surety::Configuration.database
     
     scope :needs_processing, lambda {{:conditions=>"(messages.state='unprocessed') or (messages.state='failed' and messages.failed_at<(now() - interval 10 minute))",
