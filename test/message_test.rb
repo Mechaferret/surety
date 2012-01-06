@@ -271,5 +271,14 @@ class MessageTest < Test::Unit::TestCase
     })
     assert_in_delta(message.processing_started_at, Time.now, 5)
   end
+  
+  def test_no_next_message
+    Surety::Message.new.connection.execute("truncate table messages")
+    @message1 = Surety::Message.generate_message('Message 1')
+    @message1.begin_processing!
+    @message1.complete_processing!
+    message = Surety::Message.get_next_for_processing
+    assert message.nil?
+  end
 
 end

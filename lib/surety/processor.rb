@@ -8,7 +8,7 @@ module Surety
       begin
         message = Surety::Message.get_next_for_processing
         puts "[Surety::Processor]: Found message #{message.inspect}"
-        message.process
+        message.process if message
       rescue Exception => ex
         puts "[Surety::Processor]: error #{ex.to_s}"
         puts "[Surety::Processor]: #{ex.backtrace.join("\n")}"

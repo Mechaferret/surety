@@ -14,7 +14,7 @@ module Surety
       next_message = nil
       ActiveRecord::Base.transaction do
         next_message = self.needs_processing.first
-        next_message.begin_processing!
+        next_message.begin_processing! if next_message
       end
       next_message
     end

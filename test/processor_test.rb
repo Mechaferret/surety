@@ -113,4 +113,14 @@ class ProcessorTest < Test::Unit::TestCase
     assert_in_delta(@message3.completed_at, Time.now, 5)
   end
   
+  def test_perform_nothin_in_queue
+    Surety::Message.new.connection.execute("truncate table messages")
+    @message1 = Surety::Message.generate_message('Message 1')
+    @message1.begin_processing!
+    @message1.complete_processing!
+    Surety::Processor.request_next
+    Resque::Worker.new(:surety_messages).process
+    assert Resque.redis.llen('queue:surety_messages')==1
+  end
+  
 end
