@@ -10,6 +10,8 @@ module Surety
       begin
         message.process
       rescue Exception => ex
+        puts "[Surety::Processor]: error #{ex.to_s}"
+        puts "[Surety::Processor]: #{ex.backtrace.join("\n")}"
         raise ex
       ensure
         request_next
