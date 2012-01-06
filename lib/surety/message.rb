@@ -4,7 +4,9 @@ module Surety
     establish_connection Surety::Configuration.database
     
     scope :needs_processing, lambda {
+      puts ActiveRecord::Base.default_timezone
       db_time = Time.now.send(ActiveRecord::Base.default_timezone=='utc' ? :utc : :localtime)
+      puts db_time
       {:conditions=>"(messages.state='unprocessed') or (messages.state='failed' and messages.failed_at<'#{(db_time-10.minutes).strftime('%Y-%m-%d %H:%M:%S')}')",
       :order => :created_at, :limit=>1}
     }
