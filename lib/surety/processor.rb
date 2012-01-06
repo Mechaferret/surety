@@ -4,6 +4,7 @@ module Surety
     @queue = :surety_messages
     
     def self.perform
+      message = nil
       puts "[Surety::Processor]: Handling surety message"
       begin
         message = Surety::Message.get_next_for_processing
@@ -14,6 +15,7 @@ module Surety
         puts "[Surety::Processor]: #{ex.backtrace.join("\n")}"
         raise ex
       ensure
+        sleep 5 if message.nil?
         request_next
       end
         
