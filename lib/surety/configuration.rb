@@ -5,7 +5,7 @@ module Surety
     attr_accessor :database_prefix, :message_processing_delegate
     
     def database
-      "#{database_prefix}#{ENV['RAILS_ENV']}"
+      "#{database_prefix}#{ENV['RAILS_ENV'] || Rails.env}"
     end
     
   end
