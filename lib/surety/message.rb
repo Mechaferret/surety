@@ -3,8 +3,11 @@ module Surety
     require 'state_machine'
     establish_connection Surety::Configuration.database
     
-    scope :needs_processing, lambda {{:conditions=>"(messages.state='unprocessed') or (messages.state='failed' and messages.failed_at<(now() - interval 10 minute))",
-      :order => :created_at, :limit=>1}}
+    scope :needs_processing, lambda {
+      db_time = Time.now.send(ActiveRecord::Base.default_timezone=='utc' ? :utc : :localtime)
+      {:conditions=>"(messages.state='unprocessed') or (messages.state='failed' and messages.failed_at<'#{(db_time-10.minutes).strftime('%Y-%m-%d %H:%M:%S')}')",
+      :order => :created_at, :limit=>1}
+    }
 
     def self.generate_message(message_content)
       self.create(:message_content=>message_content)
