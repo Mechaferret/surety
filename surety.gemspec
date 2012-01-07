@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = 'surety'
-  s.version           = '0.1.6'
+  s.version           = '0.1.7'
   s.date              = Time.now.strftime('%Y-%m-%d')
   s.summary           = 'A lightweight guaranteed-delivery messaging system.'
   s.homepage          = ''
