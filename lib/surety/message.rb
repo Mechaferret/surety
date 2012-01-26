@@ -2,6 +2,9 @@ module Surety
   class Message < ActiveRecord::Base
     require 'state_machine'
     establish_connection Surety::Configuration.database
+
+    scope :unprocessed, where(:state => 'unprocessed')
+    scope :processed,   where(:state => 'processed')
     
     scope :needs_processing, lambda {
       puts ActiveRecord::Base.default_timezone
