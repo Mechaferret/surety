@@ -4,7 +4,9 @@ module Surety
     establish_connection Surety::Configuration.database
 
     scope :unprocessed, where(:state => 'unprocessed')
-    scope :processed,   where(:state => 'processed')
+    scope :processing,  where(:state => 'processing')
+    scope :completed,   where(:state => 'completed')
+    scope :failed,      where(:state => 'failed')
     
     scope :needs_processing, lambda {
       puts ActiveRecord::Base.default_timezone
