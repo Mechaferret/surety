@@ -9,11 +9,13 @@ module Surety
     scope :failed,      where(:state => 'failed')
     
     scope :needs_processing, lambda {
-      puts ActiveRecord::Base.default_timezone
-      puts ActiveRecord::Base.default_timezone.to_s=='utc'
       db_time = Time.now.send(ActiveRecord::Base.default_timezone.to_s=='utc' ? :utc : :localtime)
-      puts db_time
-      {:conditions=>"(messages.state='unprocessed') or (messages.state='failed' and messages.failed_at<'#{(db_time-10.minutes).strftime('%Y-%m-%d %H:%M:%S')}')",
+      {:conditions=>"(messages.state='unprocessed') or (messages.state='failed' and messages.failed_at<('#{(db_time).strftime('%Y-%m-%d %H:%M:%S')}' - 
+        INTERVAL (#{Surety::Configuration.retry_interval || 10}*
+        POW(2, if(floor(failure_count/#{Surety::Configuration.backoff_factor || 2})>#{Surety::Configuration.max_backoff || 7}, 
+        #{Surety::Configuration.max_backoff || 7},
+        floor(failure_count/#{Surety::Configuration.backoff_factor || 2})))) 
+        MINUTE))",
       :order => :created_at, :limit=>1}
     }
 
