@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.date              = Time.now.strftime('%Y-%m-%d')
   s.summary           = 'A lightweight guaranteed-delivery messaging system.'
   s.homepage          = ''
-  s.email             = 'monica@revolutionprep.com'
+  s.email             = 'mechaferret@gmail.com'
   s.authors           = ['Monica McArthur']
 
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
