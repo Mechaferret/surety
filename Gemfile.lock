@@ -1,12 +1,12 @@
 PATH
   remote: .
   specs:
-    surety (0.1.0)
+    surety (0.1.11)
       activerecord (>= 3.0)
       activesupport (>= 3.0)
       resque (>= 1.19.0)
       state_machine (>= 1.0.0)
-      yajl-ruby (~> 0.8.2)
+      yajl-ruby (~> 1.1.0)
 
 GEM
   remote: http://rubygems.org/
@@ -46,7 +46,7 @@ GEM
     tzinfo (0.3.31)
     vegas (0.1.8)
       rack (>= 1.0.0)
-    yajl-ruby (0.8.3)
+    yajl-ruby (1.1.0)
 
 PLATFORMS
   ruby

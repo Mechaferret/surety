@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = 'surety'
-  s.version           = '0.1.10'
+  s.version           = '0.1.11'
   s.date              = Time.now.strftime('%Y-%m-%d')
   s.summary           = 'A lightweight guaranteed-delivery messaging system.'
   s.homepage          = ''
@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_paths = ['lib']
 
-  s.add_dependency('yajl-ruby', '~> 0.8.2')
+  s.add_dependency('yajl-ruby', '~> 1.1.0')
   s.add_dependency('resque', '>= 1.19.0')
   s.add_dependency('activesupport', '>= 3.0')
   s.add_dependency('activerecord', '>= 3.0')
